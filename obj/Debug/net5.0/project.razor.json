@@ -15634,6 +15634,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Especialidad\\Edit.cshtml",
+      "TargetPath": "Views\\Especialidad\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Especialidad\\Delete.cshtml",
+      "TargetPath": "Views\\Especialidad\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
