@@ -15629,6 +15629,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Paciente\\Edit.cshtml",
+      "TargetPath": "Views\\Paciente\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -15649,6 +15654,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Prueba\\Index.cshtml",
+      "TargetPath": "Views\\Prueba\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Especialidad\\Create.cshtml",
       "TargetPath": "Views\\Especialidad\\Create.cshtml",
       "FileKind": "mvc"
@@ -15664,8 +15674,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Paciente\\Create.cshtml",
+      "TargetPath": "Views\\Paciente\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Paciente\\Index.cshtml",
+      "TargetPath": "Views\\Paciente\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Paciente\\Details.cshtml",
+      "TargetPath": "Views\\Paciente\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Pc\\Desktop\\turnos\\Views\\Paciente\\Delete.cshtml",
+      "TargetPath": "Views\\Paciente\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {

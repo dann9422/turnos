@@ -1,0 +1,23 @@
+@model IEnumerable<turnos.Models.Prueba>
+
+
+    <table>
+<thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Categoria)</td>
+        </tr>
+    }
+</tbody>
+
+
+
+    </table>
