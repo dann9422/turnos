@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using turnos.Models;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 namespace turnos.Controllers
 {
     public class EspecialidadController : Controller
@@ -11,17 +14,17 @@ namespace turnos.Controllers
                 _context = context;
 
         }
-    public IActionResult Index(){
-        return View(_context.especialidad.ToList());
+    public async Task<IActionResult> Index(){
+        return  View(await _context.especialidad.ToListAsync());
     }
-        public IActionResult Edit(int? id){
+        public async Task<IActionResult> Edit(int? id){
 
             if(id== null){
 
                 return NotFound();// retornamos un error 404 algo no encontrado 
             }
 
-                var especialidad = _context.especialidad.Find(id);
+                var especialidad =await _context.especialidad.FindAsync(id);
 
                 if(especialidad == null){
 
@@ -30,7 +33,7 @@ namespace turnos.Controllers
             return View(especialidad);
         }
 [HttpPost]
-        public IActionResult Edit(int id,[Bind("idEspecialidad,descripcion")]especialidad especialidad){
+        public async Task<IActionResult> Edit(int id,[Bind("idEspecialidad,descripcion")]especialidad especialidad){
             if(id != especialidad.idEspecialidad){
                     return NotFound();// validamos que los valores sean distintos, asi mostramos un error 
 
@@ -39,19 +42,19 @@ namespace turnos.Controllers
 
                 if(ModelState.IsValid){
                 _context.Update(especialidad);// hacemos la actualizacion 
-                 _context.SaveChanges();// guardamos los cambios
+                 await _context.SaveChangesAsync();// guardamos los cambios
                 return RedirectToAction(nameof(Index));// le pasamos el actions al cual debe de redirigir los datos
                 }
                     return View(especialidad);
 
         }
 
-        public IActionResult Delete(int? id){
+        public async Task<IActionResult> Delete(int? id){
 if(id==null){
 
     return NotFound();
 }
-            var especialidad = _context.especialidad.FirstOrDefault(e => e.idEspecialidad==id);
+            var especialidad = await _context.especialidad.FirstOrDefaultAsync(e => e.idEspecialidad==id);
 
             if(especialidad == null){
 
@@ -60,13 +63,32 @@ if(id==null){
             return View();
         }
         [HttpPost]
-        public IActionResult Delete(int id){
+        public async Task<IActionResult> Delete(int id){
 
-                var especialidad =_context.especialidad.Find(id);
+                var especialidad = await _context.especialidad.FindAsync(id);
                 _context.especialidad.Remove(especialidad);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Create(){
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> create([Bind("idEspecialidad","descripcion")]especialidad especialidad){
+
+if(ModelState.IsValid){
+_context.Add(especialidad);
+await _context.SaveChangesAsync();
+return RedirectToAction(nameof(Index));
+
+}
+
+return View();
+        }
+            
+
 
     }
 }
