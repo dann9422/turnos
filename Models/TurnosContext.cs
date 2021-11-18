@@ -12,6 +12,7 @@ namespace turnos.Models
         public DbSet<Paciente> Paciente{get;set;}
         public DbSet<Prueba> Prueba {get;set;}
         public DbSet<Medico> Medico { get; set; }
+        public DbSet<MedicoEspecialidad> MedicoEspecialidad{get;set;}
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -99,7 +100,18 @@ entidad.Property(m => m.HorarioAtencionHasta)
 
 }); 
 
+modelBuilder.Entity<MedicoEspecialidad>().HasKey(x=> new{x.idMedico,x.idEspecialidad});
+modelBuilder.Entity<MedicoEspecialidad>().HasOne(x=>x.Medico)
+.WithMany(p=>p.MedicoEspecialidad)
+.HasForeignKey(p=>p.idMedico);
+
+
+modelBuilder.Entity<MedicoEspecialidad>().HasOne(x=>x.especialidad)
+.WithMany(p=>p.MedicoEspecialidad)
+.HasForeignKey(p=>p.idEspecialidad);
+
         }
+
 
     }
 }
