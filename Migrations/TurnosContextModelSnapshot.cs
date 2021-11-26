@@ -135,6 +135,38 @@ namespace turnos.Migrations
                     b.ToTable("Prueba");
                 });
 
+            modelBuilder.Entity("turnos.Models.Turnos", b =>
+                {
+                    b.Property<int>("Idturno")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("FechaHoraFin")
+                        .IsUnicode(false)
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaHoraInicio")
+                        .IsUnicode(false)
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdMedico")
+                        .IsUnicode(false)
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPaciente")
+                        .IsUnicode(false)
+                        .HasColumnType("int");
+
+                    b.HasKey("Idturno");
+
+                    b.HasIndex("IdMedico");
+
+                    b.HasIndex("IdPaciente");
+
+                    b.ToTable("Turnos");
+                });
+
             modelBuilder.Entity("turnos.Models.especialidad", b =>
                 {
                     b.Property<int>("idEspecialidad")
@@ -172,9 +204,35 @@ namespace turnos.Migrations
                     b.Navigation("Medico");
                 });
 
+            modelBuilder.Entity("turnos.Models.Turnos", b =>
+                {
+                    b.HasOne("turnos.Models.Medico", "Medico")
+                        .WithMany("Turnos")
+                        .HasForeignKey("IdMedico")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("turnos.Models.Paciente", "Paciente")
+                        .WithMany("Turnos")
+                        .HasForeignKey("IdPaciente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medico");
+
+                    b.Navigation("Paciente");
+                });
+
             modelBuilder.Entity("turnos.Models.Medico", b =>
                 {
                     b.Navigation("MedicoEspecialidad");
+
+                    b.Navigation("Turnos");
+                });
+
+            modelBuilder.Entity("turnos.Models.Paciente", b =>
+                {
+                    b.Navigation("Turnos");
                 });
 
             modelBuilder.Entity("turnos.Models.especialidad", b =>

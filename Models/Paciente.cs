@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace turnos.Models
@@ -20,6 +21,8 @@ namespace turnos.Models
         [Required(ErrorMessage ="campo obligatorio, debe de agregar un Email")]
          [EmailAddress(ErrorMessage ="No es una direción de email valida")]
         public string Email { get; set; }
+
+        public List<Turnos> Turnos{get; set;}
         
     }
 }

@@ -23,6 +23,7 @@
         <li><a asp-controller="Especialidad" asp-action="Index">Especialidades</a></li>
         <li><a asp-controller="Paciente" asp-action="Index">Paciente</a></li>
         <li><a asp-controller="Medico" asp-action="Index">Medico</a></li>
+        <li><a asp-controller="Turnos" asp-action="Index">Turnos</a></li>
       </ul>
     </div>
   </nav>
@@ -33,6 +34,7 @@
         <li><a asp-controller="Especialidad" asp-action="Index">Especialidades</a></li>
         <li><a asp-controller="Paciente" asp-action="Index">Paciente</a></li>
         <li><a asp-controller="Medico" asp-action="Index">Medico</a></li>
+        <li><a asp-controller="Turnos" asp-action="Index">Turnos</a></li>
   </ul>
     </header>
     <div class="">
@@ -64,6 +66,10 @@
         $('.slider').slider();
        $('.timepicker').timepicker();
        $('select').formSelect();
+       $('.carousel.carousel-slider').carousel({
+    fullWidth: true,
+    indicators: true
+  });
     
   });
         
