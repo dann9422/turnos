@@ -20,12 +20,20 @@ namespace turnos.Controllers
             _configuration = configuration;
         }
 
-        public IActionResult Index(){
-          ViewData["IdMedico"]= new SelectList( from Medico in _context.Medico.ToList()select new {IdMedico = Medico.IdMedico,NombreCompleto = Medico.Nombre + "" +Medico.Apellido}, "IdMedico","NombreCompleto");// devuelve todas las propiedades del modelo medico 
-          ViewData["IdPaciente"]= new SelectList( from Paciente in _context.Paciente.ToList()select new {IdPaciente = Paciente.idPaciente,NombreCompleto = Paciente.Nombre + "" +Paciente.Apellido}, "IdPacinte","NombreCompleto");// devuelve todas las propiedades del modelo paciente donde selecciona el nombre y apelluido del objeto lista  
+    //     public IActionResult Index(){
+    //      // ViewData["IdMedico"]= new SelectList( from Medico in _context.Medico.ToList()select new {IdMedico = Medico.IdMedico,NombreCompleto = Medico.Nombre + "" +Medico.Apellido}, "IdMedico","NombreCompleto");// devuelve todas las propiedades del modelo medico 
+    //       //ViewData["IdPaciente"]= new SelectList( from Paciente in _context.Paciente.ToList()select new {IdPaciente = Paciente.idPaciente,NombreCompleto = Paciente.Nombre + "" +Paciente.Apellido}, "IdPacinte","NombreCompleto");// devuelve todas las propiedades del modelo paciente donde selecciona el nombre y apelluido del objeto lista  
+    //    ViewBag["IdMedico"]= new SelectList((from Medico in _context.Medico.ToList() select new {IdMedico = Medico.IdMedico, NombreCompleto = Medico.Nombre + "" + Medico.Apellido}),"IdMedico","NombreCompleto");
+    //    ViewBag["IdPaciente"]= new SelectList((from Paciente in _context.Paciente.ToList() select new {IdPaciente = Paciente.idPaciente, NombreCompleto = Paciente.Nombre + "" + Paciente.Apellido}),"IdPaciente","NombreCompleto");
 
+    //         return View();
+
+    //     }
+     public IActionResult Index()
+        {
+            ViewData["IdMedico"] = new SelectList((from medico in _context.Medico.ToList() select new { IdMedico = medico.IdMedico, NombreCompleto = medico.Nombre + " " + medico.Apellido}),"IdMedico","NombreCompleto");
+            ViewData["IdPaciente"] = new SelectList((from paciente in _context.Paciente.ToList() select new { IdPaciente = paciente.idPaciente, NombreCompleto = paciente.Nombre + " " + paciente.Apellido}),"IdPaciente","NombreCompleto");
             return View();
-
         }
         public JsonResult ObtenerTurnos(int idMedico){
 

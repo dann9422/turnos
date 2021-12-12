@@ -7108,11 +7108,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Pc\\Desktop\\turnos\\turnos.csproj",
+      "projectUniqueName": "C:\\Users\\Pc\\Desktop\\turnos\\turnos.csproj",
       "projectName": "turnos",
-      "projectPath": "c:\\Users\\Pc\\Desktop\\turnos\\turnos.csproj",
+      "projectPath": "C:\\Users\\Pc\\Desktop\\turnos\\turnos.csproj",
       "packagesPath": "C:\\Users\\Pc\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Pc\\Desktop\\turnos\\obj\\",
+      "outputPath": "C:\\Users\\Pc\\Desktop\\turnos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7180,7 +7180,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
