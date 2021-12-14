@@ -68,7 +68,7 @@ ViewBag.Title ="Asignacion de turnos";
         function ObtenerTurnosYActualizar(idMedico){
             turnos=[];
             $.ajax({
-                type:'GET',
+                type:"GET",
                 url:"Turnos/ObtenerTurnos",
                 data:{'IdMedico':idMedico},
                 success: function(datos){
@@ -79,8 +79,8 @@ ViewBag.Title ="Asignacion de turnos";
                             idPaciente: v.idPaciente,
                             idMedico: v.idMedico,
 
-                            start: moment(v.FechaHoraInicio),
-                            end: v.fechaHoraFin !=null ? moment(v.FechaHoraFin): null,
+                               start: moment(v.fechaHoraInicio),
+                            end: v.fechaHoraFin != null ? moment(v.fechaHoraFin): null,
 
                         });
                      
