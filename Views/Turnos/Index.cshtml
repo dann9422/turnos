@@ -20,31 +20,29 @@ ViewBag.Title ="Asignacion de turnos";
 </div>
 </div>
 <br>
-@* <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.3.1/main.min.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.3.1/main.min.js'></script>
-<script src="/wwwroot/Fullcalendar/locale/es.js"></script>
-<link  href="/wwwroot/Fullcalendar/fullcalendar.css" rel="stylesheet">
-<link  href="/wwwroot/Fullcalendar/fullcalendar.print.css" media="print" rel="stylesheet">
+<div id="ModalTurno" class="modal">
+    <div class="modal-content">
+        <h4>Turno</h4>
+        <form>
+            <div>
+                <label>Inicio</label>
+                <input type="text" id="txtFechaHoraInicio" readonly="readonly">
+            </div>
 
-<div class="container">
- <div id='calendar'></div>
+             <div>
+                <label>Fin</label>
+                <input type="text" id="txtFechaHoraFin" readonly="readonly">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" id="btnEliminar" class="modal-close waves-effect waves-red btn-flat" >Eliminar</a>
+        <a href="#" id="btnGuardar" class="modal-close waves-effect waves-green btn-flat" >Guardar</a>
+         <a href="#" id="btnCerrar" class="modal-close waves-effect waves-grey btn-flat" >Cerrar</a>
+
+    </div>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        
-        defaultDate: new Date(),
-        slotLabelFormat:"HH:mm",
-        defaultView: 'agendaWeek',
-        contentHeight:'auto',
-      
-       
-    });
-    
-    calendar.render();
-    });
-</script> *@
+
 <div class="container">
  <div id="calendarioTurnos"></div>
 </div>
@@ -59,11 +57,19 @@ ViewBag.Title ="Asignacion de turnos";
 
 <script>
     $(document).ready(function(){
+       $('.modal').modal();// inicializar los modales
+       
         var horarioDesde="";
         var horarioHasta="";
         var turnos =[];
+        var  turnoSeleccionado =[];
 
         ObtenerTurnosYActualizar($('#IdMedico').val());
+        $('#IdMedico').change(function(){
+            ObtenerTurnosYActualizar(this.value);
+
+            
+        });
 
         function ObtenerTurnosYActualizar(idMedico){
             turnos=[];
@@ -123,7 +129,7 @@ ViewBag.Title ="Asignacion de turnos";
             }
         });
 
-        //aliminar los turnos para ver los de los demas medicos
+        //eliminar los turnos para ver los de los demas medicos
         $('#calendarioTurnos').fullCalendar('destroy');
 
         $('#calendarioTurnos').fullCalendar({
@@ -143,11 +149,85 @@ ViewBag.Title ="Asignacion de turnos";
         minTime: horarioDesde,
         maxTime:horarioHasta,
         events: turnos,
+        select:function(fechaHoraInicio,fechaHoraFin){// se activa cuando no hay turnos creados dentro de una celda
+                turnoSeleccionado={
+                    idTurno:0,
+                    start:fechaHoraInicio,
+                    end:fechaHoraFin
+                };
+                AbrirPopup();
+        },
+        eventClick: function (turnoClickeado){
+                        turnoSeleccionado = turnoClickeado;
+                        AbrirPopup();
+                    }
         })
 }
-    })
+
+ function AbrirPopup()
+            {
+                $('#txtFechaHoraInicio').val(turnoSeleccionado.start.format('YYYY-MM-DD HH:mm'));
+                $('#txtFechaHoraFin').val(turnoSeleccionado.end.format('YYYY-MM-DD HH:mm'));
+                if(turnoSeleccionado.idTurno == 0){
+                    $('#btnGuardar').show();
+                    $('#btnEliminar').hide();
+                }
+                else{
+                    $('#btnGuardar').hide();
+                    $('#btnEliminar').show();
+                }
+                $('#ModalTurno').modal('open');
+            }
+ 
+            $('#btnGuardar').click(function(){
+                var datosDelTurno = {
+                    IdPaciente: $('#IdPaciente').val(),
+                    IdMedico: $('#IdMedico').val(),
+                    FechaHoraInicio: $('#txtFechaHoraInicio').val(),
+                    FechaHoraFin: $('#txtFechaHoraFin').val()
+                }
+                GrabarTurno(datosDelTurno);
+            })
+ 
+            function GrabarTurno(data){
+                $.ajax({
+                    type: "POST",
+                    url: 'Turnos/GuardarTurno',
+                    data: {'turno': data},
+                    success: function (e){
+                        if(e.ok){
+                            ObtenerTurnosYActualizar($('#IdMedico').val());
+                        }
+                    },
+                    error: function(){
+                        alert('Error al grabar turno!!');
+                    }
+                })
+            }
+ 
+            $('#btnEliminar').click(function(){
+                if(confirm ('¿Esta seguro de eliminar el turno?')){
+                    $.ajax({
+                        type: "POST",
+                        url: 'Turnos/EliminarTurno',
+                        data: {'IdTurno': turnoSeleccionado.idTurno },
+                        success: function(e){
+                            if(e.ok){
+                                ObtenerTurnosYActualizar($('#IdMedico').val());
+                            }
+                        },
+                        error: function(){
+                            alert('Error al eliminar turno!')
+                        }
+                    })
+                }
+            })
+ 
+        })
     
 </script>
 } 
 
 </div>
+
+

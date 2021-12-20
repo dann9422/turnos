@@ -66,7 +66,7 @@ public JsonResult EliminarTurno(int idTurno){
     var ok = false;
     try
     {
-         var TurnoEliminar =_context.Turnos.Where(t => t.Idturno == idTurno).FirstOrDefault();
+    var TurnoEliminar =_context.Turnos.Where(t => t.Idturno == idTurno).FirstOrDefault();
     if(TurnoEliminar !=null){
 
         _context.Turnos.Remove(TurnoEliminar);
