@@ -158,3 +158,4 @@ C:\Users\Pc\Desktop\turnos\obj\Debug\net5.0\Razor\Views\Medico\Details.cshtml.g.
 C:\Users\Pc\Desktop\turnos\obj\Debug\net5.0\Razor\Views\Medico\Edit.cshtml.g.cs
 C:\Users\Pc\Desktop\turnos\obj\Debug\net5.0\Razor\Views\Medico\Index.cshtml.g.cs
 C:\Users\Pc\Desktop\turnos\obj\Debug\net5.0\Razor\Views\Turnos\Index.cshtml.g.cs
+C:\Users\Pc\Desktop\turnos\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
