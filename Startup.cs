@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using turnos.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace turnos
 {
@@ -26,7 +27,8 @@ namespace turnos
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSession(options=>{options.IdleTimeout=TimeSpan.FromSeconds(300);options.Cookie.HttpOnly=true;});
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options => 
+            options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
             services.AddDbContext<TurnosContext>(opciones => opciones.UseSqlServer(Configuration.GetConnectionString("conexion")));
         }
 

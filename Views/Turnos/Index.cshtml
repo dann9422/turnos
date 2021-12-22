@@ -1,5 +1,5 @@
 @model turnos.Models.Turnos
-
+@Html.AntiForgeryToken()
 @{
 
 ViewBag.Title ="Asignacion de turnos";
@@ -194,6 +194,7 @@ ViewBag.Title ="Asignacion de turnos";
                     type: "POST",
                     url: 'Turnos/GuardarTurno',
                     data: {'turno': data},
+                    headers:{'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()},
                     success: function (e){
                         if(e.ok){
                             ObtenerTurnosYActualizar($('#IdMedico').val());
@@ -211,6 +212,8 @@ ViewBag.Title ="Asignacion de turnos";
                         type: "POST",
                         url: 'Turnos/EliminarTurno',
                         data: {'IdTurno': turnoSeleccionado.idTurno },
+                     headers:{'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()},
+
                         success: function(e){
                             if(e.ok){
                                 ObtenerTurnosYActualizar($('#IdMedico').val());

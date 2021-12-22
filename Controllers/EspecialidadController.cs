@@ -33,6 +33,7 @@ namespace turnos.Controllers
             return View(especialidad);
         }
 [HttpPost]
+[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,[Bind("idEspecialidad,descripcion")]especialidad especialidad){
             if(id != especialidad.idEspecialidad){
                     return NotFound();// validamos que los valores sean distintos, asi mostramos un error 
